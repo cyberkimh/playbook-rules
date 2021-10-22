@@ -1,0 +1,7 @@
+alert:
+- "email"
+email:
+- "kim@th4ts3cur1ty.company"
+smtp_host: "aspmx.l.google.com"
+smtp_port: 25
+from_addr: "daffodil@pocketsiem.co.uk"
