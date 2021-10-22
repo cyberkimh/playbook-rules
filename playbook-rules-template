@@ -1,0 +1,15 @@
+title: Base64
+status: experimental
+description: Base64
+author: TBD
+logsource:
+  product: suricata
+  service: alert
+detection:
+  selection:
+    rule.uuid:
+    - 2006402
+  condition: selection
+falsepositives:
+- None
+level: high
