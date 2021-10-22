@@ -1,0 +1,52 @@
+# Elasticsearch Host Override (optional)
+es_host: 172.16.31.245 
+es_port: 9200
+
+# (Required)
+# Rule name, must be unique
+name: base64creds
+
+
+# (Required)
+# Index to search, wildcard supported
+index: "*:so-ids-*"
+
+# (Required)
+# Type of alert.
+# The Blacklist rule will check  a certain field against a blacklist and match if it is in the blacklist
+type: blacklist
+
+# (Required, blacklist)
+# The name of the field to use to compare to the blacklist. If the field is null, those events will be ignored.
+compare_key: rule.uuid
+
+# (Required, blacklist)
+# A list of blacklisted values, and/or a list of paths to flat files which contain the blacklisted values
+blacklist:
+    - "2006402"
+    - "2006380"
+realert:
+  minutes: 0
+#(Required)
+# A list of Elasticsearch filters used for find events
+# These filters are joined with AND and nested in a filtered query
+# For more info: http://www.elasticsearch.org/guide/en/elasticsearch/reference/current/query-dsl.html
+filter:
+
+- term:
+    event.dataset: "alert"
+buffer_time:
+  minutes: 10
+# (Required)
+# The alert is use when a match is found
+alert:
+- email
+
+# (required, email specific)
+# a list of email addresses to send alerts to
+email:
+ - kim@th4ts3cur1ty.company
+smtp_host: "aspmx.l.google.com"
+smtp_port: 25
+from_addr: "daffodil@pocketsiem.co.uk"
+
